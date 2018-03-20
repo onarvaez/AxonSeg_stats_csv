@@ -59,8 +59,16 @@ writetable(axontable,'axonlist_image.csv');
 temp_table = struct2table(stats);
 writetable(temp_table,'stats_image.csv');
 
-%Obtain Myelin/Axon volume fraction, then, manually change the name of MVF and AVF if you are going to analyze several images
+%Obtain Myelin/Axon Volume Fraction, then, manually change the name of MVF and AVF if you are going to analyze several images
 
 total_area=size(img,1)*size(img,2);
 bw_axonseg=as_display_label(axonlist,size(img),'axonEquivDiameter','myelin');
 img_BW_myelins=im2bw(bw_axonseg,0);
+myelin_area=nnz(img_BW_myelins);
+MVF=myelin_area/total_area;
+
+total_area=size(img,1)*size(img,2);
+bw_axonseg=as_display_label(axonlist,size(img),'axonEquivDiameter','axon');
+img_BW_axons=im2bw(bw_axonseg,0);
+axon_area=nnz(img_BW_axons);
+AVF=axon_area/total_area;
