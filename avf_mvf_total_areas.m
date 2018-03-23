@@ -31,3 +31,9 @@ myelin_por_mean = mean(myelin_area_cat)
 myelin_por_median = median(myelin_area_cat)
 myelin_por_std = std(myelin_area_cat)
 myelin_por_all_images = myelin_por_sum/total_area_image
+
+%save avf and mvf cat 
+csvwrite('avf_cat.csv', avf_cat)
+csvwrite('axon_pixel_area_cat.csv', axon_area_cat)
+csvwrite('mvf_cat.csv', mvf_cat)
+csvwrite('myelin_pixel_area_cat.csv', myelin_area_cat)
