@@ -1,8 +1,10 @@
+function axonlist_stats_mvf_avf(filename)
 %AxonSeg_stats_csv
 %Neuropoly/AxonSeg_Stats
- 
+
 %Extract each parameter from axonlist and delete axons below 0.005 micras
 
+load('axonlist')
 axonlist([axonlist.axonEquivDiameter]<0.005)=[];
 Axon_diameters = cat(1,axonlist.axonEquivDiameter);
 myelin_diameters = cat(1,axonlist.myelinEquivDiameter);
@@ -55,9 +57,18 @@ stats = struct('axon_diameter_mean',axon_diam_mean,'axon_diameter_median',axon_d
 axontable = struct2table(axonlist);
 axontable.axonID=[];
 axontable.data=[];
-writetable(axontable,'axonlist_image.csv');
-temp_table = struct2table(stats);
-writetable(temp_table,'stats_image.csv');
+%Make new directory
+odir = uigetdir('Save results in this directory');
+if odir
+    savedir=['misc' filesep];
+    mkdir(savedir);
+    currentdir=pwd;
+    cd(savedir);
+% save SegParameters
+    writetable(axontable,'axonlist_image.csv');
+    temp_table = struct2table(stats);
+    writetable(temp_table,'stats_image.csv');
+end 
 
 %Obtain Myelin/Axon Volume Fraction, then, manually change the name of MVF and AVF if you are going to analyze several images
 
@@ -65,10 +76,16 @@ total_area=size(img,1)*size(img,2);
 bw_axonseg=as_display_label(axonlist,size(img),'axonEquivDiameter','myelin');
 img_BW_myelins=im2bw(bw_axonseg,0);
 myelin_area=nnz(img_BW_myelins);
-MVF=myelin_area/total_area;
+MVF_1=myelin_area/total_area;
+struct_mvf = struct('MVF',MVF_1);
+mvf_2 = struct2table(struct_mvf)
+writetable(mvf_2,'mvf.csv');
 
 total_area=size(img,1)*size(img,2);
 bw_axonseg=as_display_label(axonlist,size(img),'axonEquivDiameter','axon');
 img_BW_axons=im2bw(bw_axonseg,0);
 axon_area=nnz(img_BW_axons);
-AVF=axon_area/total_area;
+AVF_1=myelin_area/total_area;
+struct_avf = struct('AVF',AVF_1);
+avf_2 = struct2table(struct_avf)
+writetable(avf_2,'avf.csv');
