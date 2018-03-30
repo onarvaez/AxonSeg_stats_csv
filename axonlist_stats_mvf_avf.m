@@ -4,7 +4,7 @@ function axonlist_stats_mvf_avf(filename)
 
 %Extract each parameter from axonlist and delete axons below 0.005 micras
 
-load('axonlist')
+load('axonlist_full_image.mat')
 axonlist([axonlist.axonEquivDiameter]<0.005)=[];
 Axon_diameters = cat(1,axonlist.axonEquivDiameter);
 myelin_diameters = cat(1,axonlist.myelinEquivDiameter);
@@ -58,17 +58,15 @@ axontable = struct2table(axonlist);
 axontable.axonID=[];
 axontable.data=[];
 %Make new directory
-odir = uigetdir('Save results in this directory');
-if odir
-    savedir=['misc' filesep];
-    mkdir(savedir);
-    currentdir=pwd;
-    cd(savedir);
+savedir=['misc' filesep];
+mkdir(savedir);
+currentdir=pwd;
+cd(savedir);
 % save SegParameters
     writetable(axontable,'axonlist_image.csv');
     temp_table = struct2table(stats);
     writetable(temp_table,'stats_image.csv');
-end 
+ 
 
 %Obtain Myelin/Axon Volume Fraction, then, manually change the name of MVF and AVF if you are going to analyze several images
 
@@ -89,3 +87,12 @@ AVF_1=myelin_area/total_area;
 struct_avf = struct('AVF',AVF_1);
 avf_2 = struct2table(struct_avf)
 writetable(avf_2,'avf.csv');
+
+axon_area_1 = struct('axon_pixel_area', axon_area) 
+axon_area_2 = struct2table(axon_area_1) 
+writetable(axon_area_2,'axon_pixel_area.csv') 
+
+myelin_area_1 = struct('myelin_pixel_area', myelin_area) 
+myelin_area_2 = struct2table(myelin_area_1) 
+writetable(myelin_area_2,'myelin_pixel_area.csv')
+end 
