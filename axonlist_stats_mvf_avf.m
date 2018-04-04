@@ -2,9 +2,11 @@ function axonlist_stats_mvf_avf(filename)
 %AxonSeg_stats_csv
 %Neuropoly/AxonSeg_Stats
 
+[this_dir,this_file,this_ext] = fileparts(filename);
+
 %Extract each parameter from axonlist and delete axons below 0.005 micras
 
-load('axonlist_full_image.mat')
+load(filename)
 axonlist([axonlist.axonEquivDiameter]<0.005)=[];
 Axon_diameters = cat(1,axonlist.axonEquivDiameter);
 myelin_diameters = cat(1,axonlist.myelinEquivDiameter);
@@ -58,14 +60,14 @@ axontable = struct2table(axonlist);
 axontable.axonID=[];
 axontable.data=[];
 %Make new directory
-savedir=['misc' filesep];
+savedir=[this_dir filesep 'misc' filesep];
 mkdir(savedir);
-currentdir=pwd;
-cd(savedir);
+%currentdir=pwd;
+%cd(savedir);
 % save SegParameters
-    writetable(axontable,'axonlist_image.csv');
+    writetable(axontable,fullfile(savedir,'axonlist_image.csv'));
     temp_table = struct2table(stats);
-    writetable(temp_table,'stats_image.csv');
+    writetable(temp_table,fullfile(savedir,'stats_image.csv'));
  
 
 %Obtain Myelin/Axon Volume Fraction, then, manually change the name of MVF and AVF if you are going to analyze several images
@@ -77,22 +79,29 @@ myelin_area=nnz(img_BW_myelins);
 MVF_1=myelin_area/total_area;
 struct_mvf = struct('MVF',MVF_1);
 mvf_2 = struct2table(struct_mvf)
-writetable(mvf_2,'mvf.csv');
+writetable(mvf_2,fullfile(savedir,'mvf.csv'));
 
 total_area=size(img,1)*size(img,2);
 bw_axonseg=as_display_label(axonlist,size(img),'axonEquivDiameter','axon');
 img_BW_axons=im2bw(bw_axonseg,0);
 axon_area=nnz(img_BW_axons);
-AVF_1=myelin_area/total_area;
+AVF_1=axon_area/total_area;
 struct_avf = struct('AVF',AVF_1);
 avf_2 = struct2table(struct_avf)
-writetable(avf_2,'avf.csv');
+writetable(avf_2,fullfile(savedir,'avf.csv'));
 
 axon_area_1 = struct('axon_pixel_area', axon_area) 
 axon_area_2 = struct2table(axon_area_1) 
-writetable(axon_area_2,'axon_pixel_area.csv') 
+writetable(axon_area_2,fullfile(savedir,'axon_pixel_area.csv')) 
 
 myelin_area_1 = struct('myelin_pixel_area', myelin_area) 
 myelin_area_2 = struct2table(myelin_area_1) 
-writetable(myelin_area_2,'myelin_pixel_area.csv')
+writetable(myelin_area_2,fullfile(savedir,'myelin_pixel_area.csv'))
+
+
+total_axon_almost = length(Axon_diameters)
+total_axon_1 = num2str(total_axon_almost)
+struct_total = struct('total_axon', total_axon_1)
+total_axon_final = struct2table(struct_total)
+writetable(total_axon_final,fullfile(savedir,'total_axon.csv'));
 end 
