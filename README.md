@@ -2,8 +2,21 @@
 
 Neuropoly/AxonSeg_stats_extraction and total axon count
 
-Normality test for all parameters
+1.- Utilizar loop_moz_ax_3.m para realizar la segmentación con AxonSeg en todas las imágenes necesarias
 
-Normality test for total axon
+2.- Para extraer las métricas del archivo "axonlist_full_image.mat" utilizar "axonlist_stats_mvf_avf_mozaic.m" si es una imagen, o utilizar "loop_axonlist_mvf_avf.m" si se requiere realizarlo en varias. Este proceso generará una carpeta llamada "misc" por cada imagen, la cúal contendrá.
+
+```
+axonlist_image.csv
+axon_pixel_area.csv
+myelin_pixel_area.csv
+stats_image.csv
+total_axon.csv
+avf.csv (solo si se quita el comentario de la linea 82 de axonlist_stats_mvf_avf.m)
+mvf.csv (solo si se quita el comentario de la linea 91 de axonlist_stats_mvf_avf.m)
+```
+Los últimos dos archivos se omiten si el conteo axonal se realizó en un mozaico que abarca un área mayor a la de interés, de lo contrario, se puede quitar el comentario en esas líneas y obtener esos datos directamente.
+
+Para la obtención de la avf y mvf en mozaicos es necesario realizar una máscara del área total de interes. Dicha máscara se abre en ImageJ, se aplica un umbral (Image >> Adjust >> Threshold) y después se cuantifica la cantidad de pixeles correspondientes a la máscara del área de interés (Analize >> Analyze particles). 
 
 ![axonequivdiameter_ axon _0_2um](https://user-images.githubusercontent.com/32722299/37694077-c54a6aea-2c89-11e8-8f03-8549f9a16c89.png)
