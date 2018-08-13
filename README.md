@@ -2,9 +2,18 @@
 
 Neuropoly/AxonSeg_stats_extraction and total axon count
 
-1.- Utilizar loop_moz_ax_3.m para realizar la segmentación con AxonSeg en todas las imágenes necesarias
+## Segmentación de mielina y axones con AxonSeg
 
-2.- Para extraer las métricas del archivo "axonlist_full_image.mat" utilizar "axonlist_stats_mvf_avf_mozaic.m" si es una imagen, o utilizar "loop_axonlist_mvf_avf.m" si se requiere realizarlo en varias. Este proceso generará una carpeta llamada "misc" por cada imagen, la cúal contendrá.
+1.- Utilizar loop_moz_ax_3.m para realizar la segmentación con AxonSeg en todas las imágenes necesarias. Cada imagen generará una carpeta con el nombre de la imagen + Segmentation (e.g. mozaic_Segmentation) y tendrá: 
+
+```
+axonEquivDiameter_(axon)_0_xum.png
+axonEquivDiameter_(myelin)_0_xum.png
+axonlist_full_image.mat
+```
+## Extracción de métricas de axonlist
+
+2.- Para extraer las métricas del archivo "axonlist_full_image.mat" utilizar "axonlist_stats_mvf_avf_mozaic.m" si es una imagen, o utilizar "loop_axonlist_mvf_avf.m" si se requiere en varias. Este proceso generará una carpeta llamada "metrics" (dentro de imagen_Segmentation) por cada imagen, la cúal contendrá:
 
 ```
 axonlist_image.csv
@@ -17,6 +26,16 @@ mvf.csv (solo si se quita el comentario de la linea 91 de axonlist_stats_mvf_avf
 ```
 Los últimos dos archivos se omiten si el conteo axonal se realizó en un mozaico que abarca un área mayor a la de interés, de lo contrario, se puede quitar el comentario en esas líneas y obtener esos datos directamente.
 
-Para la obtención de la avf y mvf en mozaicos es necesario realizar una máscara del área total de interes. Dicha máscara se abre en ImageJ, se aplica un umbral (Image >> Adjust >> Threshold) y después se cuantifica la cantidad de pixeles correspondientes a la máscara del área de interés (Analize >> Analyze particles). 
+## Obtención de avf y mvf para mozaicos 
+
+3.-Para la obtención de la avf y mvf en mozaicos es necesario realizar una máscara del área total de interes. Dicha máscara se abre en ImageJ, se aplica un umbral (Image >> Adjust >> Threshold) y después se cuantifica la cantidad de pixeles correspondientes a la máscara del área de interés (Analize >> Analyze particles) y guardar el "summary" 
+
+```
+Summary_total_pix.csv
+```
+## Concatenar métricas y axonlist
+
+4.- 
+
 
 ![axonequivdiameter_ axon _0_2um](https://user-images.githubusercontent.com/32722299/37694077-c54a6aea-2c89-11e8-8f03-8549f9a16c89.png)
