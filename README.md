@@ -42,7 +42,14 @@ stats_image_all.csv
 ```
 Nota. Por ahora es necesario cambiar de ruta cada que se generan estos dos nuevos archivos, sino se guardarán en la carpeta de alguna de las imágenes y creará una sobreescritura cada que corra
 
+## Concatenar stats de imágenes (varios ensayos, misma muestra) - Ponderación
 
+5.- Utilizar "stats_per_image.m" para concatenar las "stats" de las imágenes tomadas de la misma muestra para obtener el archivo de todos los "stats" y la stat ponderada de dicha concatenación, por lo tanto ahora habrán dos archivos más:
+```
+axonlist_stats_per_image.csv
+stats_per_image.csv
+```
+Nota. Por ahora es necesario cambiar de ruta cada que se generan estos dos nuevos archivos, sino se guardarán en la carpeta de alguna de las imágenes y creará una sobreescritura cada que corra
 
 
 
