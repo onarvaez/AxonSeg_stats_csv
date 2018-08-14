@@ -4,7 +4,7 @@ Neuropoly/AxonSeg_stats_extraction and total axon count
 
 ## Segmentación de mielina y axones con AxonSeg
 
-1.- Utilizar loop_moz_ax_3.m para realizar la segmentación con AxonSeg en todas las imágenes necesarias. Cada imagen generará una carpeta con el nombre de la imagen + Segmentation (e.g. mozaic_Segmentation) y tendrá: 
+1.- Utilizar loop_moz.m para realizar la segmentación con AxonSeg en todas las imágenes necesarias. Cada imagen generará una carpeta con el nombre de la imagen + Segmentation (e.g. mozaic_Segmentation) y tendrá: 
 
 ```
 axonEquivDiameter_(axon)_0_xum.png
