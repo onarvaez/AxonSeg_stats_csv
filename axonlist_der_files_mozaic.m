@@ -60,7 +60,7 @@ axontable = struct2table(axonlist);
 axontable.axonID=[];
 axontable.data=[];
 %Make new directory
-savedir=[this_dir filesep 'misc' filesep];
+savedir=[this_dir filesep 'metrics' filesep];
 mkdir(savedir);
 %currentdir=pwd;
 %cd(savedir);
