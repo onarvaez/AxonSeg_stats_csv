@@ -13,7 +13,7 @@ axonlist_full_image.mat
 ```
 ## Extracción de métricas de axonlist
 
-2.- Para extraer las métricas del archivo "axonlist_full_image.mat" utilizar "axonlist_der_files_mozaic.m" si es una imagen, o utilizar "loop_axonlist_mvf_avf.m" si se requiere en varias. Este proceso generará una carpeta llamada "metrics" (dentro de imagen_Segmentation) por cada imagen, la cúal contendrá:
+2.- Para extraer las métricas del archivo "axonlist_full_image.mat" utilizar "axonlist_der_files_mozaic.m" si es una imagen, o utilizar "loop_axonlist_der_files.m" si se requiere en varias. Este proceso generará una carpeta llamada "metrics" (dentro de imagen_Segmentation) por cada imagen, la cúal contendrá:
 
 ```
 axonlist_image.csv
