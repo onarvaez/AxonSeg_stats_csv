@@ -54,4 +54,4 @@ Nota. Por ahora es necesario cambiar de ruta cada que se generan estos dos nuevo
 
 
 
-![axonequivdiameter_ axon _0_2um](https://user-images.githubusercontent.com/32722299/37694077-c54a6aea-2c89-11e8-8f03-8549f9a16c89.png)
+![axonequivdiameter_ axon _0_3um](https://user-images.githubusercontent.com/32722299/44066222-ca730554-9f34-11e8-949a-b95e86780909.png) 
