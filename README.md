@@ -33,9 +33,18 @@ Los últimos dos archivos se omiten si el conteo axonal se realizó en un mozaic
 ```
 Summary_total_pix.csv
 ```
-## Concatenar métricas y axonlist
+## Concatenar axonlist de imágenes (varios ensayos, misma muestra)
 
-4.- 
+4.- Utilizar "stats_all_image.m" para concatenar los axonlist de las imagenes tomadas de la misma muestra para obtener el archivo de todos los "axonlist" y la "stat" de dicha concatenación, por lo tanto ahora habrán dos archivos más:
+```
+axonlist_image_all.csv
+stats_image_all.csv
+```
+Nota. Por ahora es necesario cambiar de ruta cada que se generan estos dos nuevos archivos, sino se guardarán en la carpeta de alguna de las imágenes y creará una sobreescritura cada que corra
+
+
+
+
 
 
 ![axonequivdiameter_ axon _0_2um](https://user-images.githubusercontent.com/32722299/37694077-c54a6aea-2c89-11e8-8f03-8549f9a16c89.png)
